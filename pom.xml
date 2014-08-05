@@ -94,7 +94,6 @@
 				<artifactId>commons-pool</artifactId>
 				<version>1.6</version>
 			</dependency>
-
 			<dependency>
 				<groupId>c3p0</groupId>
 				<artifactId>c3p0</artifactId>
@@ -182,7 +181,7 @@
 				<artifactId>javaee</artifactId>
 				<version>6.0-alpha-1</version>
 				<!-- 在部署的时候，由web容器提供，不需要此包。因为容器中就有，版本不同，启动会报错 -->
-				<!-- <scope>provided</scope> -->
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>

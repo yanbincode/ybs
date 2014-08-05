@@ -24,6 +24,12 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.10</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.hamcrest</groupId>
+						<artifactId>hamcrest-parent</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>antlr</groupId>
@@ -184,10 +190,12 @@
 				<artifactId>javassist</artifactId>
 				<version>3.13.0-GA</version>
 			</dependency>
+			<!--json-lib -->
 			<dependency>
-				<groupId>org.json</groupId>
-				<artifactId>json</artifactId>
-				<version>20131018</version>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>2.4</version>
+				<classifier>jdk15</classifier>
 			</dependency>
 			<!-- 这些包项目中忽略之后，在新build项目的时候会找不到这个包 -->
 			<dependency>
@@ -379,12 +387,6 @@
 				<artifactId>spring-security-web</artifactId>
 				<version>${spring.security.version}</version>
 			</dependency>
-			<!-- 中央库没有 -->
-			<dependency>
-				<groupId>com.swetake</groupId>
-				<artifactId>qrcode</artifactId>
-				<version>1.0.0</version>
-			</dependency>
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>
 				<artifactId>xstream</artifactId>
@@ -395,21 +397,6 @@
 				<artifactId>xpp3_min</artifactId>
 				<version>1.1.4c</version>
 			</dependency>
-
-			<!-- jbpm <dependency> <groupId>org.jbpm</groupId> <artifactId>jbpm</artifactId> <version>4.4</version> 
-				</dependency> -->
-			<dependency>
-				<groupId>de.odysseus.juel</groupId>
-				<artifactId>juel-api</artifactId>
-				<version>2.1.2</version>
-			</dependency>
-			<dependency>
-				<groupId>de.odysseus.juel</groupId>
-				<artifactId>juel-impl</artifactId>
-				<version>2.1.2</version>
-			</dependency>
-			<!-- <dependency> <groupId>extra-jar.jbpm</groupId> <artifactId>juel-engine</artifactId> <version>1.0</version> 
-				</dependency> -->
 			<dependency>
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
@@ -443,22 +430,29 @@
 				<artifactId>javax.mail</artifactId>
 				<version>1.5.0</version>
 			</dependency>
-
-			<!-- maven中心仓下不到的，没有经过oracle授权 -->
 			<dependency>
-				<groupId>com.oracle</groupId>
-				<artifactId>classes12</artifactId>
-				<version>10.2.0.2.0</version>
+				<groupId>oracle.jdbc.driver</groupId>
+				<artifactId>ojdbc14</artifactId>
+				<version>10.2.0.1.0</version>
 			</dependency>
 			<dependency>
-				<groupId>com.oracle</groupId>
-				<artifactId>ojdbc14</artifactId>
-				<version>10.2.0.4.0</version>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>core</artifactId>
+				<version>3.1.0</version>
+			</dependency>
+			<!-- 本地自己放的，maven库中没有 -->
+			<dependency>
+				<groupId>com.swetake</groupId>
+				<artifactId>qrcode-swetake</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>jp.sourceforge</groupId>
+				<artifactId>qrcode</artifactId>
+				<version>0.2</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-
 	<build>
 		<pluginManagement>
 			<plugins>

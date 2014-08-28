@@ -1,0 +1,14 @@
+resin-3.1.12:
+
+main class : 
+com.caucho.server.resin.Resin
+
+program arguments : 
+-conf "E:\deve_tools\resin-3.1.12\conf\oss-web.conf"
+
+vm arguments : 
+-Dresin.home="E:\deve_tools\resin-3.1.12"
+-Djava.util.logging.manager=com.caucho.log.LogManagerImpl
+
+导入resin lib下的jar包
+导入jdk下的lib包

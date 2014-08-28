@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- project 根节点：声明了一些POM相关的命名空间及xsd元素 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!-- modelVersion 指定了当前POM模型的版本 -->
+	<modelVersion>4.0.0</modelVersion>
+	<!-- 重要的是groupId，artifactId和version三行 ：是任何一个Maven项目最基本的坐标.用来定位一个maven项目 -->
+	<!-- groupId定义了项目属于哪个组:如 -->
+	<groupId>group</groupId>
+	<!-- artifactId定义了当前Maven项目在组中唯一的ID -->
+	<artifactId>maven</artifactId>
+	<!-- version指定了项目当前的版本 -->
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- 配置依赖 -->
+	<dependencies>
+		<!-- junit依赖 -->
+		<dependency>
+			<!-- 也是一个maven项目 -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<!-- scope为依赖范围，若依赖范围为test则表示该依赖只对测试有效。默认值compile表示全部有效 -->
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- 编译的时候的设定 -->
+	<build>
+		<!--生成的目标文件名 -->
+		<finalName>oss-web</finalName>
+		<!-- 这是打包的文件的路径。默认是该工程的根目录。 -->
+		<directory>target</directory>
+		<!-- 源文件名夹的名称。这里对应填写我们的src目录。 -->
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<!-- 编译后的java文件输出的文件夹位置。 -->
+		<outputDirectory>src/main/webapp/WEB-INF/classes </outputDirectory>
+		<!-- 测试文件源文件夹。这里与src文件夹的定义是相同的。在打包时有区别，打包时，test文件夹下的源文件和资源文件都不被打到war包里面。 -->
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<defaultGoal>install</defaultGoal>
+		<!-- 存放资源文件。这里的文件不需要编译，在部署打包时，直接复制这里的文件 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<!-- 设定编译时候的插件 -->
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+				<configuration>
+					<url>http://localhost/manager</url>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webappDirectory>target/oss-web</webappDirectory>
+					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

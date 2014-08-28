@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<!-- 表示本地库保存位置 ,默认是 ~/.m2/repository。 -->
+	<localRepository>usr/local/maven</localRepository>
+	<!-- Maven是否需要和用户交互以获得输入。如果Maven需要和用户交互以获得输入，则设置成true，反之则应为false。默认为true。 -->
+	<interactiveMode>true</interactiveMode>
+	<!-- Maven是否需要使用plugin-registry.xml文件来管理插件版本，默认为fasle -->
+	<usePluginRegistry>false</usePluginRegistry>
+	<!-- 离线开关，是否每次构建都从远程仓库下载，默认false；适用情况，网络不通 -->
+	<offline />
+	<!-- 插件组 -->
+	<pluginGroups>
+		<!--plugin的组织Id(groupId) -->
+		<pluginGroup>org.codehaus.mojo</pluginGroup>
+	</pluginGroups>
+	<!-- 对应POM文件的distributionManagement元素里定义id,和登陆服务器的用户名、密码.一些设置如安全证书不应该和pom.xml一起分发 -->
+	<servers>
+		<server>
+			<!-- id:server 的id,用于匹配distributionManagement库id，比较重要。 -->
+			<id>server001</id>
+			<!-- username, password:用于登陆此服务器的用户名和密码 -->
+			<username>my_login</username>
+			<password>my_password</password>
+			<privateKey>${usr.home}/.ssh/id_dsa</privateKey>
+			<passphrase>some_passphrase</passphrase>
+			<filePermissions>664</filePermissions>
+			<directoryPermissions>775</directoryPermissions>
+			<configuration></configuration>
+		</server>
+	</servers>
+	<!-- 定义仓库镜像，将仓库地址指向自定义仓库地址(id：新的镜像ID，name：镜像名称，url：镜像地址，mirrorOf：以那个地址做镜像，默认为central) -->
+	<mirrors>
+		<mirror>
+			<!-- id,name:唯一的标志，用于区别镜像 -->
+			<id>planetmirror.com</id>
+			<name>PlanetMirror Australia</name>
+			<!-- url:镜像的url -->
+			<url>http://downloads.planetmirror.com/pub/maven2</url>
+			<!-- mirrorOf：此镜像指向的服务id -->
+			<mirrorOf>central</mirrorOf>
+		</mirror>
+	</mirrors>
+	<!-- 设置HTTP代理 -->
+	<proxies>
+		<proxy>
+			<id>myproxy</id>
+			<!-- active：是否激活代理 -->
+			<active>true</active>
+			<!-- 协议 -->
+			<protocol>http</protocol>
+			<!-- 代理ip -->
+			<host>proxy.somewhere.com</host>
+			<!-- 代理端口 -->
+			<port>8080</port>
+			<username>proxyuser</username>
+			<password>somepassword</password>
+			<!-- nonProxyHosts: 不需要代理的host -->
+			<nonProxyHosts>*.google.com|ibiblio.org</nonProxyHosts>
+		</proxy>
+	</proxies>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<!-- 定义其他开发库 -->
+			<repositories>
+				<repository>
+					<id>repo-local</id>
+					<name>Internal 开发库</name>
+					<url>http://192.168.0.2:8082/repo-local</url>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+						<checksumPolicy>warn</checksumPolicy>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<layout>default</layout>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>dev</activeProfile>
+	</activeProfiles>
+</settings>

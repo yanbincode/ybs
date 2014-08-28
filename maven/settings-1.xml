@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<localRepository>E:\deve_tools\maven-2.2.1\repository</localRepository>
+	<servers>
+		<server>
+			<id>dev</id>
+			<username>yanbincode</username>
+			<password>yanbin0830</password>
+		</server>
+	</servers>
+	<pluginGroups>
+		<pluginGroup>org.apache.maven.plugins</pluginGroup>
+	</pluginGroups>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<repositories>
+				<repository>
+					<id>maven-jar</id>
+					<url>https://github.com/yanbincode/maven-respository/tree/master</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>dev</activeProfile>
+	</activeProfiles>
+</settings>

@@ -1,0 +1,31 @@
+maven : 
+
+1、eclipse : 建立maven项目
+
+	1、new --> maven project --> new simple project --> 设置groupId 和  artifactId(项目名)
+	
+	2、右击项目build path --> sources指定java到 target/classes ; test到target/test-classes
+	   libraries 指定到 eclipse默认指定的jre
+	
+	3、如果是web项目：在src/main 下建立  webapp
+											META-INF 和 WEB-INF 及web项目结构的文件
+
+2、就开发而言，maven的项目结构还是依据 java web 的结构够将。只是在套了一层src和main层
+
+3、构建：编译、运行单元测试、生成文档、打包和部署
+
+4、main路径下面是主代码，test路径下面是测试代码；项目主代码和测试代码不同，项目的主代码会被打包到最终的构件中（比如jar）
+
+5、mvn clean compile ：编译
+   mvn clean test ：测试
+   mvn clean package ：打包jar
+   mvn clean install ：安装
+        执行test之前是会先执行compile的，执行package之前是会先执行test的，而类似地，install之前会执行package。
+ 
+6、maven核心配置：
+
+	settings.xml : 全局地定制Maven的行为。有两个：一个位于maven2的安装目录conf下面，作为全局性配置，团队内一致。另外一个位置为：${user.dir} /.m2/settings.xml目录中
+	
+	pom.xml (Project Object Model) : Maven项目的核心,定义了项目的基本信息，用于描述项目如何构建，声明项目依赖，等等
+	
+、Maven生命周期

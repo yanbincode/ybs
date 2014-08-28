@@ -1,0 +1,9 @@
+﻿配置环境变量为：
+
+1.打开我的电脑--属性--高级--环境变量 
+
+2.配置三个变量
+
+	a、JAVA_HOME  jdk的文件夹位置  例：C:\Java\jdk1.6.0_10
+	b、CLASSPATH  指定java安装的lib文件夹位置 例：C:\Java\jdk1.6.0_10\lib
+	c、Path 指定java安装的bin文件夹位置 例：C:\Java\jdk1.6.0_10\bin

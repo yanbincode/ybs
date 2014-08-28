@@ -1,0 +1,28 @@
+
+WEB项目结构
+
+web_project
+
+----src (必须)
+----src_resource(自建)
+
+----WebRoot (必须)
+
+--------js (自建)
+--------css (自建)
+
+--------WEB-INF
+------------classes(必须)
+------------jsp(自建)
+------------lib(自建)
+------------web.xml(必须)
+
+--------META-INF
+------------MANIFEST.MF
+
+--------index.jsp
+
+classes：将编译完的class文件指定到classes文件夹，在eclipse中保存就会编译成classes
+
+部署到tomcat：将WebRoot文件夹下的内容复制到tomcat下的webapps文件夹下，启动就可以访问了。
+	      

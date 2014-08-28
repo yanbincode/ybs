@@ -1,0 +1,101 @@
+﻿jdk 7
+
+switch语句中使用字符串
+
+    jdk 6之前只允许是 整型和枚举
+
+    switch(obj) case "" : result; case "" : result 
+	
+	obj不能为null，NullPointerException
+
+	case中的值不能相同，字符串通过Unicode转换后相同也会出错。如：“男”和“\u7537” 判断为重复
+
+	尽量使用枚举来代替字符串
+
+数值：
+
+    默认是十进制
+
+    0 八进制
+ 
+    0X 十六进制
+
+    0B 二进制 （ 新增 ）
+
+    数值中可以加入 “ _ ” ，任意多个下划线 。主要目的方便阅读，不影响数值。
+
+异常：
+
+    1、回顾异常知识：
+
+	设计异常的时候，应该是不同的层次定义不同的异常。 controller 层 ，service层 ，dao层定义不同的异常进行划分
+
+	定义不同的异常还是，定义通用异常并用异常信息不同来区分。 看实际情况
+
+	异常包装：每个异常的构造方法 都能 将另一个异常作为参数。并通过getCause() 方法来获取
+
+	异常类的信息足够充分
+
+	在响应客户之前，应该将异常全部捕获。避免抛出堆栈信息的错误页面
+
+	异常丢失：try ... catch ... finally ... 在finally中抛出异常， try中的异常就消失了。 
+		
+		可以利用 Throwable 类 的addSuppressed() 方法 记录消失异常信息，会抛出到堆栈信息中。或者用getSuppressed()方法获取
+
+    2、新特性：
+
+	支持一个catch语句，捕获多个异常 ： 为了减少重复代码。
+
+		捕获多个异常，不需要写多个相同的catch子句。 
+		
+		方法：一个catch语句，允许指定多个exception ，中间有 “ |” 符号分隔。
+
+		规则：多个 exception 不能有相同的异常； 后面的异常不能是前面异常的父类；
+
+	捕获并重新抛出异常时异常类型更加精确 。java异常内部机制做的调优
+
+	
+try ... with ... resources ：资源管理语句。
+
+	谁申请，谁释放。比如：流、数据库连接
+	
+	方法：
+
+		单个：try(BuffereReader reader = new BufferedReader(new File())) {}
+
+		多个：try(InputStream input = new FileInputStream(fromFile); OutputStream output = new FileOutputStream(toFile)) {}		
+
+	规则：要使用try语句来管理资源的类必须实现： Closeable 或 AutoCloseable接口
+
+优化可变参数方法调用：
+
+
+	sum(int ...values){}   //传入多个参数，求和
+
+	@SafeVarargs ：数组或者集合类中是泛型的时候，编译器给出不安全警告。利用这个注解就可以声明为安全，并且编译器遇到下次这种情况时不会出现安全问题
+
+	@SafeVarargs 规则：注解只能用在参数长度可变的方法或构造方法上，且方法必须声明为static 或 final，否则会出现编译错误
+
+Java语言动态性：
+
+	脚本语言支持 API：在应用开发中使用脚本语言，实际上是“多语言开发”的一种很好的实践，不同语言编写的代码可以同时运行在同一个 Java 虚拟机之上。
+
+	Java 标准 API 中的包是 javax.script
+
+	脚本引擎的一般用法：
+		
+		首先创建一个脚本引擎管理器javax.script.ScriptEngineManager 对象；
+		
+		再通过管理器来查找所需的JavaScript脚本引擎；
+
+		最后通过脚本引擎来执行 JavaScript 代码
+
+	反射API ：
+
+		反射 API 在为 Java 程序带来灵活性的同时，也产生了额外的性能代价。
+
+		由于反射API 的实现机制，对于相同的操作，比如调用同一个方法，用反射 API 来动态实现比直接在源代码中编写的方式大概慢一到两个数量级。	   
+
+	java动态代理：
+
+

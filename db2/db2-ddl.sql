@@ -30,3 +30,6 @@ EXPORT TO /path/file_name.csv of del SELECT * FROM t_name;
 
 --导入备份数据
 import from /path/file_name.csv of del insert into t_name;
+
+--有的客户端不能直接执行 reorg
+CALL SYSPROC.ADMIN_CMD('reorg  table t_name') 
